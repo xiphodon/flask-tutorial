@@ -10,3 +10,49 @@ flask init-db
 
 # 使项目可安装
 pip install -e .
+
+# 测试代码、测试覆盖率
+pip install pytest coverage
+
+# 测试代码
+pytest
+
+# 代码覆盖率
+coverage run -m pytest
+# 查看测试报告
+coverage report
+# 查看报告详情
+coverage html
+
+# 安装“轮子”
+pip install wheel
+# 构建.whl文件
+python setup.py bdist_wheel
+
+# 服务器开启新venv环境
+# 服务器安装.whl文件
+pip install flaskr-1.0.0-py3-none-any.whl
+# 服务器创建初始化环境
+export FLASK_APP=flaskr
+flask init-db
+
+
+# 生产环境 生成随机秘钥
+python -c 'import os; print(os.urandom(16))'
+b'_5#y2L"F4Q8z\n\xec]/'
+python -c "import os; print(os.urandom(16))"
+b'\x9a\x16\x93\xc7\xb26\xfa\x95\x04\x8dz7,W\x9fy'
+
+# 配置生产环境秘钥
+venv/var/flaskr-instance/config.py
+SECRET_KEY = b'_5#y2L"F4Q8z\n\xec]/'
+
+
+# 安装生产WSGI服务器 Waitress
+pip install waitress
+# 生产环境运行项目
+waitress-serve --call 'flaskr:create_app'
+waitress-serve --call "flaskr:create_app"
+waitress-serve --call flaskr:create_app
+
+Serving on http://0.0.0.0:8080

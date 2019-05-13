@@ -7,7 +7,7 @@
 # @Software: PyCharm
 
 import os
-
+import click
 from flask import Flask
 
 
@@ -25,6 +25,11 @@ def create_app(test_config=None):
     else:
         # load the test config if passed in
         app.config.from_mapping(test_config)
+
+    if app.config['SECRET_KEY'] == 'dev':
+        print('SECRET_KEY is dev')
+    else:
+        print('SECRET_KEY is Production')
 
     # ensure the instance folder exists
     try:
