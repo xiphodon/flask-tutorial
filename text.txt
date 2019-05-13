@@ -1,0 +1,12 @@
+# 临时环境变量
+set FLASK_APP=flaskr
+set FLASK_ENV=development
+
+# 运行
+flask run
+
+# 初始化数据库
+flask init-db
+
+# 使项目可安装
+pip install -e .
